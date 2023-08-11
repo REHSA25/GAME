@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     private bool isTouchingGround;
 
+    public Animator animator; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,25 +25,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
 
         if (direction > 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
+            animator.SetBool("ismoving", true);
         }
         else if (direction < 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
+            animator.SetBool("ismoving", true);
         }
         else
         {
             player.velocity = new Vector2(0, player.velocity.y);
+            animator.SetBool("ismoving", false);
         }
 
         if (Input.GetButtonDown("Jump") && isTouchingGround)
         {
             player.velocity = new Vector2(player.velocity.x, jumpSpeed);
         }
+
+        animator.SetFloat("yvelocity", player.velocity.y);
     }
 }
