@@ -5,35 +5,38 @@ using UnityEngine;
 public class WereWolf_Movement : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject player;
-    private Transform playerPos;
-    public Vector2 currentPos;
-    public float distance;
-    public float speedEnemy;
+    public Transform Player;
+    public int MoveSpeed = 2;
 
+    private bool facingLeft;
     void Start()
     {
-        playerPos = player.GetComponent<Transform>();
-        currentPos = gameObject.transform.position;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, playerPos.position) < distance)
+        Vector3 scale = transform.localScale;
+        if (Player.position.x > transform.position.x)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speedEnemy * Time.deltaTime);
+            scale.x = Mathf.Abs(scale.x) * -1;
+            facingLeft = false;
+        } else
+        {
+            scale.x = Mathf.Abs(scale.x);
+            facingLeft = true;
         }
-        else
-        {
-            if (Vector2.Distance(transform.position, currentPos) <= 0)
-            {
 
-            }
-            else
-            {
-                transform.position = Vector2.MoveTowards(transform.position, currrentPos, speedEnemy * Time.deltaTime);
-            }
+        transform.localScale = scale;
+
+        if (facingLeft)
+        {
+            transform.position -= transform.right * MoveSpeed * Time.deltaTime;
+        } else
+        {
+            transform.position += transform.right * MoveSpeed * Time.deltaTime;
         }
+
     }
 }
