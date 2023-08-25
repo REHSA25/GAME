@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 8f;
     private float direction = 0f;
     private Rigidbody2D player;
+	public bool facingRight = true;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -28,16 +29,26 @@ public class PlayerController : MonoBehaviour
         
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
-
+		animator.SetBool("istouchingground",isTouchingGround); 
         if (direction > 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
             animator.SetBool("ismoving", true);
+			if (!facingRight)
+			{
+				Flip();
+			
+			}
         }
         else if (direction < 0f)
         {
             player.velocity = new Vector2(direction * speed, player.velocity.y);
             animator.SetBool("ismoving", true);
+			if (facingRight)
+			{
+				Flip();
+			
+			}
         }
         else
         {
@@ -52,4 +63,12 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("yvelocity", player.velocity.y);
     }
+	void Flip(){
+		Vector3 currentScale = player.transform.localScale;
+		currentScale.x *= -1;
+		player.transform.localScale = currentScale;
+		
+		facingRight = !facingRight;
+	}
+
 }
