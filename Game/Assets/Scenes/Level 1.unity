@@ -484,7 +484,7 @@ Rigidbody2D:
   m_Mass: 4
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.4
+  m_GravityScale: 1.2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -553,8 +553,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997d46cc1804c4f76b8fa7871d1dfacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8.7832
+  minspeed: 5
+  maxspeed: 9.5
   jumpSpeed: 9
+  facingRight: 1
   groundCheck: {fileID: 229586938}
   groundCheckRadius: 0.3
   groundLayer:

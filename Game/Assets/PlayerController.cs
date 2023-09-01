@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
+	public float minspeed = 5f;
+	public float maxspeed = 9.5f;
     public float jumpSpeed = 8f;
     private float direction = 0f;
     private Rigidbody2D player;
@@ -26,7 +28,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+		if (Input.GetKey(KeyCode.Space)) {
+			animator.SetBool("isattacking",true);
+		}
+		else{
+			animator.SetBool("isattacking",false);
+		}
+        if (Input.GetKey(KeyCode.LeftShift)){ 
+			speed = maxspeed; 
+		}
+		else {
+			speed = minspeed; 
+		}
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         direction = Input.GetAxis("Horizontal");
 		animator.SetBool("istouchingground",isTouchingGround); 
@@ -56,7 +69,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("ismoving", false);
         }
 
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
+        if (Input.GetKey(KeyCode.W) && isTouchingGround)
         {
             player.velocity = new Vector2(player.velocity.x, jumpSpeed);
         }
