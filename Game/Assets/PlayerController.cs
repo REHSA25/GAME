@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKey(KeyCode.Space)) {
+		if (Input.GetKey(KeyCode.W)) {
 			animator.SetBool("isattacking",true);
 		}
 		else{
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("ismoving", false);
         }
 
-        if (Input.GetKey(KeyCode.W) && isTouchingGround)
+        if (Input.GetKey(KeyCode.Space) && isTouchingGround)
         {
             player.velocity = new Vector2(player.velocity.x, jumpSpeed);
         }
