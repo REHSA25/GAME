@@ -6,9 +6,10 @@ public class WereWolf_Movement : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform Player;
-    public int MoveSpeed = 2;
+    public float MoveSpeed = 2.5f;
 
     private bool facingLeft;
+    public Animator animator;
     void Start()
     {
 
@@ -38,5 +39,13 @@ public class WereWolf_Movement : MonoBehaviour
             transform.position += transform.right * MoveSpeed * Time.deltaTime;
         }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.name == "Samurai 1")
+        {
+            animator.SetBool("isattacking", true); 
+        }
     }
 }

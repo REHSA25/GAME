@@ -555,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpSpeed: 9
+  facingRight: 1
   groundCheck: {fileID: 229586938}
   groundCheckRadius: 0.3
   groundLayer:
@@ -983,7 +984,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1014096949}
-  MoveSpeed: 3
+  MoveSpeed: 2
+  animator: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
