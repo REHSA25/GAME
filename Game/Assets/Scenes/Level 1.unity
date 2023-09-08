@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 12
   currentHealth: 0
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 1425757236}
   speed: 8.7832
   minspeed: 5
   maxspeed: 9.5
