@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.93725497, g: 0.058823533, b: 0.11764707, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -748,10 +748,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1425757234}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -182.4, y: -0.00076866}
-  m_SizeDelta: {x: 70.8602, y: 70.8602}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 3.7000122, y: -0.00076771}
+  m_SizeDelta: {x: 54.3009, y: 54.301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791649788
 MonoBehaviour:
@@ -971,7 +971,7 @@ Transform:
   m_GameObject: {fileID: 1014096946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.63, y: -4.82, z: -1}
+  m_LocalPosition: {x: -8.52, y: -4.89, z: -1}
   m_LocalScale: {x: 5.7415, y: 5.7415, z: 5.7415}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1077,6 +1077,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997d46cc1804c4f76b8fa7871d1dfacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 12
+  currentHealth: 0
+  HealthBar: {fileID: 0}
   speed: 8.7832
   minspeed: 5
   maxspeed: 9.5
@@ -1412,6 +1415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1425757234}
   - component: {fileID: 1425757235}
+  - component: {fileID: 1425757236}
   m_Layer: 5
   m_Name: Health bar
   m_TagString: Untagged
@@ -1438,8 +1442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -168.64417, y: 179.16043}
-  m_SizeDelta: {x: -545.3924, y: -415.0332}
+  m_AnchoredPosition: {x: -153.4859, y: 175.59595}
+  m_SizeDelta: {x: -575.709, y: -422.1622}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1425757235
 MonoBehaviour:
@@ -1486,12 +1490,25 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
-  m_WholeNumbers: 0
-  m_Value: 1
+  m_MaxValue: 12
+  m_WholeNumbers: 1
+  m_Value: 12
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1425757236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425757233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd287d169a49a241823175d1661264c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1425757235}
 --- !u!1 &2069859757
 GameObject:
   m_ObjectHideFlags: 0
