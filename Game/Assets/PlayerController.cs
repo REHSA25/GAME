@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    private bool attackstart = false;
+    public int maxHealth = 12;
+    public int currentHealth;
+    public HealthBar HealthBar;
     public float speed = 5f;
 	public float minspeed = 5f;
 	public float maxspeed = 9.5f;
@@ -22,6 +27,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
+        HealthBar.SetMaxHealth(maxHealth);
         player = GetComponent<Rigidbody2D>();
     }
 
@@ -30,9 +37,11 @@ public class PlayerController : MonoBehaviour
     {
 		if (Input.GetKey(KeyCode.W)) {
 			animator.SetBool("isattacking",true);
+            attackstart = true;
 		}
 		else{
 			animator.SetBool("isattacking",false);
+            attackstart = false;
 		}
         if (Input.GetKey(KeyCode.LeftShift)){ 
 			speed = maxspeed; 
@@ -83,5 +92,18 @@ public class PlayerController : MonoBehaviour
 		
 		facingRight = !facingRight;
 	}
+
+    void TakeDamage (int damage) {
+        currentHealth -= damage;
+        HealthBar.SetHealth(currentHealth);
+    }
+
+    void OnCollisionEnter2D (Collision2D col) {
+        if (col.gameObject.name == "Werewolf"){
+            if (attackstart){
+                TakeDamage(4); 
+            }
+        }
+    }
 
 }
