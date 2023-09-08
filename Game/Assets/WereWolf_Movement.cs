@@ -43,9 +43,15 @@ public class WereWolf_Movement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        Debug.Log("Collision Detected");
         if (col.gameObject.name == "Samurai 1")
         {
             animator.SetBool("isattacking", true); 
         }
+    }
+
+    void stopattacking()
+    {
+        animator.SetBool("isattacking", false);
     }
 }
