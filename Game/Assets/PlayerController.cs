@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
-
-    private bool attackstart = false;
+{    
+    // Variables for Health Bar
     public int maxHealth = 12;
     public int currentHealth;
-    public HealthBar HealthBar;
+    public HealthBar healthBar;
+
+    // Get Werewolf GameObject to check if it is attacking
+    public GameObject Werewolf;
+
+    public bool isAttacking = false;
+    
     public float speed = 5f;
 	public float minspeed = 5f;
 	public float maxspeed = 9.5f;
     public float jumpSpeed = 8f;
     private float direction = 0f;
-    private Rigidbody2D player;
+    public Rigidbody2D player;
 	public bool facingRight = true;
 
     public Transform groundCheck;
@@ -28,21 +33,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        HealthBar.SetMaxHealth(maxHealth);
-        player = GetComponent<Rigidbody2D>();
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKey(KeyCode.W)) {
-			animator.SetBool("isattacking",true);
-            attackstart = true;
+        animator.SetBool("isattacking", isAttacking);
+        if (Input.GetKey(KeyCode.W)) {
+            isAttacking = true;
 		}
-		else{
-			animator.SetBool("isattacking",false);
-            attackstart = false;
-		}
+
         if (Input.GetKey(KeyCode.LeftShift)){ 
 			speed = maxspeed; 
 		}
@@ -95,15 +96,18 @@ public class PlayerController : MonoBehaviour
 
     void TakeDamage (int damage) {
         currentHealth -= damage;
-        HealthBar.SetHealth(currentHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     void OnCollisionEnter2D (Collision2D col) {
         if (col.gameObject.name == "Werewolf"){
-            if (attackstart){
-                TakeDamage(4); 
-            }
+            TakeDamage(3);
         }
+    }
+
+    void stopAttacking()
+    {
+        isAttacking = false;
     }
 
 }

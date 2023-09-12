@@ -4,20 +4,35 @@ using UnityEngine;
 
 public class WereWolf_Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
     public Transform Player;
     public float MoveSpeed = 2.5f;
 
     private bool facingLeft;
     public Animator animator;
+
+    public bool isattacking = false;
+
+    // Variables for Health Bar
+    public int maxHealth = 2;
+    public int currentHealth;
+    public HealthBar healthBar;
+
+    // Get Samurai GameObject to check if it is attacking
+    public GameObject Samurai;
     void Start()
     {
-
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+        animator.SetBool("isattacking", isattacking);
         Vector3 scale = transform.localScale;
         if (Player.position.x > transform.position.x)
         {
@@ -43,15 +58,24 @@ public class WereWolf_Movement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Collision Detected");
         if (col.gameObject.name == "Samurai 1")
         {
-            animator.SetBool("isattacking", true); 
+            isattacking = true;
+            if (Samurai.GetComponent<PlayerController>().isAttacking)
+            {
+                TakeDamage(1);
+            }
         }
     }
 
     void stopattacking()
     {
-        animator.SetBool("isattacking", false);
+        isattacking = false;
+    }
+
+    void TakeDamage (int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }
