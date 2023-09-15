@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 12;
     public int currentHealth;
     public HealthBar healthBar;
+    public HealthBar energyBar;
+    public int maxEnergy = 10000000;
+    public int currentEnergy;
 
     // Get Werewolf GameObject to check if it is attacking
     public GameObject Werewolf;
@@ -34,6 +37,8 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        currentEnergy = maxEnergy;
+        energyBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -44,8 +49,15 @@ public class PlayerController : MonoBehaviour
             isAttacking = true;
 		}
 
-        if (Input.GetKey(KeyCode.LeftShift)){ 
-			speed = maxspeed; 
+        if (Input.GetKey(KeyCode.LeftShift)){
+            currentEnergy -= 1;
+            energyBar.SetHealth(currentEnergy);
+            if (currentEnergy <= 0)
+            {
+                speed = maxspeed;
+            }
+            currentEnergy -= 1;
+            energyBar.SetHealth(currentEnergy);
 		}
 		else {
 			speed = minspeed; 
