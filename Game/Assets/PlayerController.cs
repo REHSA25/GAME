@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0) {
             Debug.Log("Dead");
-            animator.SetTrigger("dead");
+            animator.SetTrigger("death");
             dead = true;
         }
     }
@@ -136,5 +136,6 @@ public class PlayerController : MonoBehaviour
 
     void Dead(){
         animator.speed = 0;
+        Destroy(gameObject);
     }
 }
