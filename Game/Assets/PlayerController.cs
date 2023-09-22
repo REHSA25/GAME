@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     public GameObject Werewolf;
 
     public bool isAttacking = false;
+
+    public bool dead = false;
+
+    public bool isdying = false;
     
     public float speed = 5f;
 	public float minspeed = 5f;
@@ -39,6 +43,8 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         currentEnergy = maxEnergy;
         energyBar.SetMaxHealth(maxHealth);
+
+        
     }
 
     // Update is called once per frame
@@ -109,6 +115,12 @@ public class PlayerController : MonoBehaviour
     void TakeDamage (int damage) {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0) {
+            Debug.Log("Dead");
+            animator.SetTrigger("dead");
+            dead = true;
+        }
     }
 
     void OnCollisionEnter2D (Collision2D col) {
@@ -122,4 +134,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
+    void Dead(){
+        animator.speed = 0;
+    }
 }

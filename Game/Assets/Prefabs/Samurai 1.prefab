@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6521602631615675348}
   - component: {fileID: 3352601589692773893}
   - component: {fileID: 3906679535866160152}
-  - component: {fileID: 4712736363375481769}
   - component: {fileID: 3309928085499303397}
   - component: {fileID: 15427714496293208}
   m_Layer: 0
@@ -142,6 +141,13 @@ MonoBehaviour:
   maxHealth: 12
   currentHealth: 0
   healthBar: {fileID: 0}
+  energyBar: {fileID: 0}
+  maxEnergy: 10000000
+  currentEnergy: 0
+  Werewolf: {fileID: 0}
+  isAttacking: 0
+  dead: 0
+  isdying: 0
   speed: 8.7832
   minspeed: 5
   maxspeed: 9.5
@@ -154,51 +160,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   animator: {fileID: 6521602631615675348}
---- !u!61 &4712736363375481769
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8175249259667018315}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.46}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.56, y: 0.92}
-    newSize: {x: 0.56, y: 0.92}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.56, y: 0.92}
-  m_EdgeRadius: 0
 --- !u!50 &3309928085499303397
 Rigidbody2D:
   serializedVersion: 4
